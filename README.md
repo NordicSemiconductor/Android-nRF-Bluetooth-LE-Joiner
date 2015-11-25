@@ -9,10 +9,9 @@ This service contains three characteristics
 
 *Commissioning SSID - The UUID of the Commissioning SSID characteristic is 0x77A9 over proprietary base. The data received on this characteristic will serve as the manufacturer-specific data of the advertisement data the next time the node enters connectable mode in Joining mode. This characteristic must be written before Joining mode can be requested.The size of the packet written to the Commissioning SSID characteristic must be between 6 and 16 octets. Packets must be in little endian (LSB first) order.
 
-*Commissioning Keys Store - The UUID of the Commissioning Keys Store characteristic is 0x77B9 over proprietary base. The data received on this characteristic will serve as the Passkey while establishing a secure connection to the router in Joining mode. This characteristic must be written before Joining mode can be requested. An array of length zero must be written to indicate the absence of OOB data. The size of the packet written to the Commissioning Keys Store characteristic must be between 0 and 8 octets. Packets must be in little endian (LSB first) order.
+*Commissioning Keys Store - The UUID of the Commissioning Keys Store characteristic is 0x77B9 over proprietary base. The data received on this characteristic will serve as the Passkey while establishing a secure connection to the router in Joining  mode. This characteristic must be written before Joining mode can be requested. An array of length zero must be written to indicate the absence of OOB data. The size of the packet written to the Commissioning Keys Store characteristic must be between 0 and 8 octets. Packets must be in little endian (LSB first) order.
 
-*Commissioning Control Point The UUID of the Commissionning Control Point characteristic is 0x77C9 over proprietary base.
-The Commissioning Control Point characteristic is used to control the state of the commissioning process. All commissioning procedures are requested by writing to this characteristic.
+*Commissioning Control Point The UUID of the Commissionning Control Point characteristic is 0x77C9 over proprietary base. The Commissioning Control Point characteristic is used to control the state of the commissioned node. All commissioning procedures are requested by writing to this characteristic.
 
 ### Note:
 
