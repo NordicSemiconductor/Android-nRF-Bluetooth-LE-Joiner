@@ -12,7 +12,7 @@ This service contains three characteristics
 *Commissioning Keys Store - The UUID of the Commissioning Keys Store characteristic is 0x77B9 over proprietary base. The data received on this characteristic will serve as the Passkey while establishing a secure connection to the router in Joining mode. This characteristic must be written before Joining mode can be requested. An array of length zero must be written to indicate the absence of OOB data. The size of the packet written to the Commissioning Keys Store characteristic must be between 0 and 8 octets. Packets must be in little endian (LSB first) order.
 
 *Commissioning Control Point The UUID of the Commissionning Control Point characteristic is 0x77C9 over proprietary base.
-The Commissioning Control Point characteristic is used to control the state of the commissioning process. All commissioning procedures are requested by writing to this characteristic. A response that marks the end of the procedure is received as a notification.
+The Commissioning Control Point characteristic is used to control the state of the commissioning process. All commissioning procedures are requested by writing to this characteristic.
 
 ### Note:
 
