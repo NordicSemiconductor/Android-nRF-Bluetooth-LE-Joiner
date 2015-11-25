@@ -1,0 +1,175 @@
+<!--
+  ~ Copyright (c) 2015, Nordic Semiconductor
+  ~ All rights reserved.
+  ~
+  ~ Redistribution and use in source and binary forms, with or without
+  ~ modification, are permitted provided that the following conditions are met:
+  ~
+  ~ * Redistributions of source code must retain the above copyright notice, this
+  ~   list of conditions and the following disclaimer.
+  ~
+  ~ * Redistributions in binary form must reproduce the above copyright notice,
+  ~   this list of conditions and the following disclaimer in the documentation
+  ~   and/or other materials provided with the distribution.
+  ~
+  ~ * Neither the name of copyright holder nor the names of its
+  ~   contributors may be used to endorse or promote products derived from
+  ~   this software without specific prior written permission.
+  ~
+  ~ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  ~ AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  ~ IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+  ~ DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE
+  ~ FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+  ~ DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR
+  ~ SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+  ~ CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY,
+  ~ OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  ~ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+  -->
+
+<resources>
+    <string name="app_name">nRF BLE Joiner</string>
+
+    <string name="scan_ble">Click to Scan</string>
+    <string name="action_settings">Settings</string>
+    <string name="action_start_scan">SCAN</string>
+    <string name="action_stop_scan">STOP</string>
+    <string name="action_make_discoverable">Make discoverable</string>
+    <string name="action_connect">Connect</string>
+    <string name="action_disconnect">Disconnect</string>
+    <string name="action_configure_wifi">Configure Wifi</string>
+
+    <string name="unknown_device">Unknown device</string>
+    <string name="unknown_characteristic">Unknown characteristic</string>
+    <string name="unknown_service">Unknown service</string>
+    <string name="no_data">No data</string>
+    <string name="wifi_instructions">Please ensure that the android device is connected to the desired wifi network</string>
+    <string name="config_btn_text">Configure BLE Node</string>
+    <string name="activity_settings_title">Settings</string>
+    <string name="settings_wifi">Wifi Networks</string>
+    <string name="title_activity_configure_wifi">Configure Wifi</string>
+    <string name="add_wifi_network">Add Wifi</string>
+    <string name="view_password">View password</string>
+    <string name="set_default_router">Set as commissioning wifi for the node</string>
+    <string name="no_wifi_configured">No wifi networks have been configured</string>
+    <string name="no_default_wifi">No default wifi set</string>
+    <string name="title_default_wifi">Default</string>
+    <string name="other_wifi">Other</string>
+
+    <string-array name="op_codes">
+        <item>Connection Mode</item>
+        <item>Configuration Mode</item>
+        <item>Identification Mode</item>
+    </string-array>
+
+    <string name="ble_connection_mode_value">01</string>
+    <string name="ble_configuration_mode_value">02</string>
+    <string name="ble_identification_mode_value">03</string>
+    <string name="ble_connection_mode">Connection Mode</string>
+    <string name="ble_configuration_mode">Configuration Mode</string>
+    <string name="ble_identification_mode">Identification Mode</string>
+    <string name="identity_mode_duration">Identity Mode Duration:</string>
+    <string name="identification_duration">Identification duration in seconds</string>
+    <string name="ble_frag_op_code_message">Select an action</string>
+    <string name="action_delay">Action delay in seconds</string>
+    <string name="connection_duration_default">20</string>
+    <string name="identity_data">Identity Data</string>
+    <string name="action_delay_default">10</string>
+    <string name="tv_ble_frag_title">BLE Node Configuration</string>
+
+    <string-array name="next_mode">
+        <item>No change</item>
+        <item>Power off</item>
+        <item>Configuraton mode</item>
+    </string-array>
+
+    <string-array name="add_wifi_method">
+        <item>Add manually</item>
+        <item>Scan for Wifi</item>
+    </string-array>
+
+    <string name="no_state_change">No change</string>
+    <string name="power_off">Power off</string>
+    <string name="configuration_mode">Configuraton mode</string>
+    <string name="no_state_change_value">00</string>
+    <string name="power_off_value">01</string>
+    <string name="configuration_mode_value">02</string>
+    <string name="ble_frag_state_of_failure_message">Select a back up mode in case of action failure</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="wifi_add_manually">Add manually</string>
+    <string name="wifi_scan">Scan</string>
+    <string name="add_wifi_title">Add Wifi Network</string>
+    <string name="ssid">SSID</string>
+    <string name="wifi_password">Password</string>
+    <string name="empty_ssid">SSID cannot be empty</string>
+    <string name="edit_configuration">Edit default configuration</string>
+    <string name="enable_bluetooth">Please enable bluetooth on your smart phone to connect to ble device</string>
+    <string name="txt_on">On</string>
+    <string name="txt_off">Off</string>
+    <string name="frag_edit_device_title">Edit Device</string>
+    <string name="show_notifications">Show notifications</string>
+    <string name="device_name">Device name</string>
+    <string name="device_empty">Device name cannot be empty</string>
+    <string name="general">General</string>
+    <string name="ble_not_supported">Device does not support BLE!</string>
+    <string name="identity_data_length">8</string>
+    <string name="title_activity_user_guide">UserGuideActivity</string>
+    <string name="configure_wifi_message">Please setup at least one desired wifi network on the app to configure your ble device with.</string>
+    <string name="add_wifi">ADD WIFI</string>
+    <string name="scan_ble_guide">Click here to start/stop scanning for BLE Nodes</string>
+    <string name="ble_node_list_guide">Click here to configure/provision a BLE Node!</string>
+    <string name="edit_config_guide">Click here to edit default configuration</string>
+    <string name="identify_ble_guide">Click here to identify the connected BLE Node and the node will start to blink!</string>
+    <string name="configure_ble_guide">Click here to provision a BLE Node</string>
+    <string name="reset_guide">Reset Guide</string>
+    <string name="settings_about_nrf_iot">About application</string>
+    <string name="settings_about_nordic">Nordic Semiconductor online</string>
+    <string name="settings_about_github">nRF BLE Joiner on GitHub</string>
+
+	<string name="about_text"><b>nRF BLE Joiner</b> is a sample application that lets you provision IOT Nodes based on Bluetooth Smart.
+        The application will configure your IOT nodes to communicate with an IPv6 enabled router via Bluetooth Smart.</string>
+    <string name="about_link"><a href="http://www.nordicsemi.com">www.nordicsemi.com</a></string>
+    <string name="action_facebook">Facebook</string>
+    <string name="action_twitter">Twitter</string>
+    <string name="action_linkedin">LinkedIn</string>
+    <string name="action_youtube">YouTube</string>
+    <string name="version">Version %s</string>
+    <string name="ok">Ok</string>
+
+    <string name="rationale_title">Permission required</string>
+    <string name="rationale_location_permission_denied">Starting scanning failed. Access denied.</string>
+    <string name="rationale_location_message">From Android 6.0 Marshmallow onwards, the system requires access to device\'s location in order to scan for Bluetooth Smart devices.
+      \n\nBluetooth beacons, like iBeacons or Eddystone beacons, may be used to determine the phone\'s and user\'s location, However <b>nRF BLE Joiner</b> will not be using device location information for any purpose.</string>
+    <string name="cancel">Cancel</string>
+    <string name="ssid_too_long_error">SSID length cannot be greater than 16 characters!</string>
+    <string name="password_too_long_error">Password length cannot be greater than 16 characters</string>
+    <string name="check_error_try_again">Please looking in to the errors and try again!</string>
+    <string name="please_select_wifi">Please select a wifi network from the list!</string>
+    <string name="check_wifi_enabled">Please check if your wifi is enabled!</string>
+    <string name="select_option">Please select an option in order to proceed!</string>
+    <string name="save">Save</string>
+    <string name="notifications_disabled">Notifications are disabled for this device</string>
+    <string name="notifications_enabled">Notifications are enabled for this device</string>
+    <string name="ble_node_list">Devices</string>
+    <string name="about">About</string>
+    <string name="rationale_location_cancel_message">Please turn on location services from the locations settings manually.</string>
+    <string name="check_bluetooth">Please check if bluetooth is enabled on your smart phone</string>
+    <string name="router_char_error">Router characteristic is null</string>
+    <string name="wifi_select_error">Please select a wifi network from the list</string>
+    <string name="disconnected">Disconnected from</string>
+    <string name="settings">Settings</string>
+    <string name="wifi_scan_title">Wifi Scan</string>
+    <string name="wifi_scan_message">Wifi scan in progress...</string>
+    <string name="select_wifi_title">Select Wifi Network</string>
+    <string name="select_wifi_messge">Wifi network scan complete. Please select the desired wifi network!</string>
+    <string name="edit_wifi_title">Edit Wifi Network</string>
+    <string name="no_wifi_configured_error">No Wifi Networks Configured</string>
+    <string name="configure">Configure</string>
+    <string name="action_delay_error">Please enter an action delay</string>
+    <string name="identification_duration_error">Please enter an identification duration</string>
+    <string name="device_label_error">Please enter a device label</string>
+    <string name="op_code_error">Please check if a Control Point Configuration or the Next Mode has been selected</string>
+    <string name="backup_mode_error">Please check if the back up mode is selected!</string>
+    <string name="identify">Identify</string>
+</resources>
