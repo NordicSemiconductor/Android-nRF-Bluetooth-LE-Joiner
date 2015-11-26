@@ -127,8 +127,8 @@
     <string name="settings_about_nordic">Nordic Semiconductor online</string>
     <string name="settings_about_github">nRF BLE Joiner on GitHub</string>
 
-	<string name="about_text"><b>nRF BLE Joiner</b> is a sample application that lets you provision IOT Nodes based on Bluetooth Smart.
-        The application will configure your IOT nodes to communicate with an IPv6 enabled router via Bluetooth Smart.</string>
+	<string name="about_text"><b>nRF BLE Joiner</b> is an application that lets you add new IoT nodes to the network based on Bluetooth Smart.
+        The application will configure the IoT node to communicate with an IPv6 enabled router via Bluetooth Smart.</string>
     <string name="about_link"><a href="http://www.nordicsemi.com">www.nordicsemi.com</a></string>
     <string name="action_facebook">Facebook</string>
     <string name="action_twitter">Twitter</string>

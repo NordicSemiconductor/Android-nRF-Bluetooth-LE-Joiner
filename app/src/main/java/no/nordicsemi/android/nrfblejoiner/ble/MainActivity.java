@@ -120,7 +120,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
     private BLEService mBLEService;
     private ProgressDialog mProgressDialog;
     private ConfigureBleFragment mConfigureBleFragment = null;
-    private RelativeLayout relativeLayout;
+    private RelativeLayout mRelativeLayout;
     private GoogleApiClient mGoogleApiClient = null;
     private LocationRequest mLocationRequestBalancedPowerAccuracy;
     private boolean locationServicesRequestApproved = false;
@@ -133,7 +133,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
         final Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle(getString(R.string.app_name));
-        relativeLayout = (RelativeLayout) findViewById(R.id.ble_rel);
+        mRelativeLayout = (RelativeLayout) findViewById(R.id.ble_rel);
 
         final ListView listViewDevices = (ListView)findViewById(R.id.listDevices);
         mProgressDialog =  new ProgressDialog(this);
@@ -719,7 +719,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
     private void showError(final String error, boolean setAction){
 
         final Snackbar snackbar = Snackbar
-                .make(relativeLayout, error, Snackbar.LENGTH_LONG);
+                .make(mRelativeLayout, error, Snackbar.LENGTH_LONG);
         final View snackbarView = snackbar.getView();
         snackbarView.setBackgroundColor(Color.DKGRAY);
         final TextView textView = (TextView) snackbarView.findViewById(android.support.design.R.id.snackbar_text);

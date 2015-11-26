@@ -87,26 +87,26 @@ public class BLEService extends Service {
     public final static String ACTION_DISMISS_DIALOG =
             "no.nordicsemi.android.nrfblejoiner.ACTION_DISMISS_DIALOG";
     private final static ParcelUuid NODE_CONFIGURATION_SERVICE = ParcelUuid.fromString("54207799-8F40-4FE5-BEBE-6BB7022D3E73");
-    public final static UUID IOT_SSID_CHARACTERISTIC = UUID.fromString("542077A9-8F40-4FE5-BEBE-6BB7022D3E73");
-    public final static UUID IOT_KEY_STORE_CHARACTERISTIC = UUID.fromString("542077B9-8F40-4FE5-BEBE-6BB7022D3E73");
-    public final static UUID IOT_CONTROL_POINT_CHARACTERISTIC = UUID.fromString("542077C9-8F40-4FE5-BEBE-6BB7022D3E73");
+    public final static UUID COMMISSIONNING_SSID_CHARACTERISTIC = UUID.fromString("542077A9-8F40-4FE5-BEBE-6BB7022D3E73");
+    public final static UUID COMMISSIONNING_KEYS_STORE_CHARACTERISTIC = UUID.fromString("542077B9-8F40-4FE5-BEBE-6BB7022D3E73");
+    public final static UUID COMMISSIONNING_CONTROL_POINT_CHARACTERISTIC = UUID.fromString("542077C9-8F40-4FE5-BEBE-6BB7022D3E73");
 
     //IOT characteristics
-    private BluetoothGattCharacteristic mRouterIdCharacteristic;
-    private BluetoothGattCharacteristic mSessionIdCharacteristic;
+    private BluetoothGattCharacteristic mSsidCharacteristic;
+    private BluetoothGattCharacteristic mKeyStoreCharacteristic;
     private BluetoothGattCharacteristic mControlPointCharacteristic;
     private boolean mRouterId = false;
     private boolean mSessionId = false;
     private boolean mControlPoint = false;
     private DatabaseHelper mDbHelper;
-    private WifiNetwork wifiNetwork;
-    private String opCode;
-    private String identityModeDuration;
+    private WifiNetwork mWifiNetwork;
+    private String mOpCode;
+    private String mIdentityModeDuration;
     private String deviceLabel;
 
     private final IBinder mBinder = new LocalBinder();
-    private String actionDelay;
-    private String nextMode;
+    private String mActionDelay;
+    private String mNextMode;
     public boolean mIdentifySelected = false;
 
     public class LocalBinder extends Binder{
@@ -159,9 +159,9 @@ public class BLEService extends Service {
                 Log.v(TAG, "GAT success");
                 final BluetoothGattService service = gatt.getService(NODE_CONFIGURATION_SERVICE.getUuid());
                 if(service != null){
-                    mRouterIdCharacteristic = service.getCharacteristic(IOT_SSID_CHARACTERISTIC);
-                    mSessionIdCharacteristic = service.getCharacteristic(IOT_KEY_STORE_CHARACTERISTIC);
-                    mControlPointCharacteristic = service.getCharacteristic(IOT_CONTROL_POINT_CHARACTERISTIC);
+                    mSsidCharacteristic = service.getCharacteristic(COMMISSIONNING_SSID_CHARACTERISTIC);
+                    mKeyStoreCharacteristic = service.getCharacteristic(COMMISSIONNING_KEYS_STORE_CHARACTERISTIC);
+                    mControlPointCharacteristic = service.getCharacteristic(COMMISSIONNING_CONTROL_POINT_CHARACTERISTIC);
                     broadcastUpdate(ACTION_GATT_SERVICES_DISCOVERED);
                 }
 
@@ -264,8 +264,7 @@ public class BLEService extends Service {
             Log.v(TAG, "Device not found unable to connect");
             return false;
         }
-        // We want to directly connect to the device, so we are setting the autoConnect
-        // parameter to false.
+
         mBluetoothGatt = bleDevice.connectGatt(this, false, mBLEGattCallBack);
         Log.d(TAG, "Trying to create a new connection.");
         mBluetoothDeviceAddress = address;
@@ -294,27 +293,27 @@ public class BLEService extends Service {
             Toast.makeText(BLEService.this, getString(R.string.check_bluetooth), Toast.LENGTH_SHORT).show();
             return;
         }
-        this.opCode = opCode;
-        this.identityModeDuration = identityModeTimeout;
-        this.actionDelay = actionDelay;
-        this.nextMode = nextMode;
+        mOpCode = opCode;
+        mIdentityModeDuration = identityModeTimeout;
+        mActionDelay = actionDelay;
+        mNextMode = nextMode;
 
         if(opCode.equalsIgnoreCase(getString(R.string.ble_identification_mode_value))){
             this.deviceLabel = deviceLabel;
         }
-        wifiNetwork = mDbHelper.getDefaultWifiNetwork();
+        mWifiNetwork = mDbHelper.getDefaultWifiNetwork();
 
-        if(mRouterIdCharacteristic == null){
+        if(mSsidCharacteristic == null){
             Toast.makeText(this, getString(R.string.router_char_error), Toast.LENGTH_SHORT).show();
         }
 
-        if(wifiNetwork != null) {
-            int length = wifiNetwork.getSsid().getBytes().length;
+        if(mWifiNetwork != null) {
+            int length = mWifiNetwork.getSsid().getBytes().length;
             byte [] dataByte = new byte [length];
-            System.arraycopy(wifiNetwork.getSsid().getBytes(), 0, dataByte, 0, length);
-            boolean flag = mRouterIdCharacteristic.setValue(dataByte);
+            System.arraycopy(mWifiNetwork.getSsid().getBytes(), 0, dataByte, 0, length);
+            boolean flag = mSsidCharacteristic.setValue(dataByte);
             Log.v(TAG, "set value to characteristic: " + flag);
-            mRouterId = mBluetoothGatt.writeCharacteristic(mRouterIdCharacteristic);
+            mRouterId = mBluetoothGatt.writeCharacteristic(mSsidCharacteristic);
         }
     }
 
@@ -323,9 +322,9 @@ public class BLEService extends Service {
             Toast.makeText(BLEService.this, getString(R.string.check_bluetooth), Toast.LENGTH_SHORT).show();
             return;
         }
-        byte[] dataByte = wifiNetwork.getPassword().getBytes();
-        mSessionIdCharacteristic.setValue(dataByte);
-        mSessionId = mBluetoothGatt.writeCharacteristic(mSessionIdCharacteristic);
+        byte[] dataByte = mWifiNetwork.getPassword().getBytes();
+        mKeyStoreCharacteristic.setValue(dataByte);
+        mSessionId = mBluetoothGatt.writeCharacteristic(mKeyStoreCharacteristic);
     }
 
     public void writeControlPointCharacteristic() {
@@ -352,10 +351,10 @@ public class BLEService extends Service {
         final byte[] serviceData = new byte[10];
         ByteBuffer bb = ByteBuffer.wrap(serviceData);
         bb.order(ByteOrder.BIG_ENDIAN);
-        bb.put(((byte) Integer.parseInt(opCode)));
-        bb.putInt(Integer.parseInt(actionDelay));
-        bb.putInt(Integer.parseInt(identityModeDuration));
-        bb.put((byte) Integer.parseInt(nextMode));
+        bb.put(((byte) Integer.parseInt(mOpCode)));
+        bb.putInt(Integer.parseInt(mActionDelay));
+        bb.putInt(Integer.parseInt(mIdentityModeDuration));
+        bb.put((byte) Integer.parseInt(mNextMode));
         byte[] data = bb.array();
         mControlPointCharacteristic.setValue(data);
         mControlPoint = mBluetoothGatt.writeCharacteristic(mControlPointCharacteristic);

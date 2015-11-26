@@ -74,7 +74,6 @@ public class DatabaseHelper {
         @Override
         public void onCreate(SQLiteDatabase db) {
             db.execSQL(SQL_CREATE_WIFI_ENTRIES);
-            Log.v("BLE", "Database created");
         }
 
         @Override

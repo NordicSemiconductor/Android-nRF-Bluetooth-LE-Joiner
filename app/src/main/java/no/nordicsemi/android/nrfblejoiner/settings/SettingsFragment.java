@@ -39,7 +39,6 @@ import no.nordicsemi.android.nrfblejoiner.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
 
-    private OnPreferenceInteractionListener prefsListener;
     private static final String ARG_CATEGORY = "category";
 
     public static SettingsFragment newInstance (final String category) {
@@ -104,7 +103,6 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     public void onAttach(Context context) {
         super.onAttach(context);
         try {
-            prefsListener = (OnPreferenceInteractionListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString()
                     + " must implement OnPreferenceInteractionListener");
