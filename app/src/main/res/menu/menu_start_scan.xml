@@ -38,6 +38,6 @@
         android:title="@string/action_configure_wifi"
         android:orderInCategory="101" app:showAsAction="never" />
     <item android:id="@+id/action_settings"
-        android:title="@string/action_settings"
+        android:title="@string/action_about"
         android:orderInCategory="102" app:showAsAction="never" />
 </menu>

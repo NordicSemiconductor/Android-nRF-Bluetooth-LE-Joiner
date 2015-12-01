@@ -28,58 +28,65 @@
  * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
 
-package no.nordicsemi.android.nrfblejoiner;
+package no.nordicsemi.android.nrfblejoiner.settings;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
-import android.view.animation.AlphaAnimation;
-import android.widget.RelativeLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
-import no.nordicsemi.android.nrfblejoiner.ble.MainActivity;
-import no.nordicsemi.android.nrfblejoiner.database.DatabaseHelper;
+import no.nordicsemi.android.nrfblejoiner.R;
 
-
-public class SplashScreenActivity extends Activity {
-
-    private static final int DURATION = 1000;
+public class AboutActivity extends AppCompatActivity implements SettingsFragment.OnPreferenceInteractionListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splash_screen);
 
-        final DatabaseHelper dbHelper = new DatabaseHelper(this);
+        setContentView(R.layout.activity_settings);
+        final Toolbar toolbar = (Toolbar) findViewById(R.id.app_bar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setTitle(getString(R.string.about));
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if(savedInstanceState == null)
+            this.getSupportFragmentManager().beginTransaction().replace(R.id.content, SettingsFragment.newInstance()).commit();
+    }
 
-        final AlphaAnimation alpha = new AlphaAnimation(1,0);
-        alpha.setDuration(200);
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
 
-        final RelativeLayout relativeLayout = (RelativeLayout) findViewById(R.id.relativeSplash);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        return super.onCreateOptionsMenu(menu);
+    }
 
-        final Handler handler = new Handler();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                relativeLayout.setAnimation(alpha);
-            }
-        }, 700);
+        switch (item.getItemId()){
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+        }
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                final Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-                finish();
-            }
-        }, DURATION);
-
+        return super.onOptionsItemSelected(item);
     }
 
     @Override
     public void onBackPressed() {
-        //super.onBackPressed();
+        super.onBackPressed();
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    @Override
+    public void onInteractionListener() {
     }
 }

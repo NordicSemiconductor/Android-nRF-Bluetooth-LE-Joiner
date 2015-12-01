@@ -85,7 +85,7 @@ import java.util.List;
 import no.nordicsemi.android.nrfblejoiner.ExtendedBluetoothDevice;
 import no.nordicsemi.android.nrfblejoiner.R;
 import no.nordicsemi.android.nrfblejoiner.database.DatabaseHelper;
-import no.nordicsemi.android.nrfblejoiner.settings.SettingsActivity;
+import no.nordicsemi.android.nrfblejoiner.settings.AboutActivity;
 import no.nordicsemi.android.nrfblejoiner.wifi.ConfigureWifiActivity;
 import no.nordicsemi.android.nrfblejoiner.wifi.WifiFragmentDefault;
 import no.nordicsemi.android.nrfblejoiner.wifi.WifiFragmentMessage;
@@ -123,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
     private RelativeLayout mRelativeLayout;
     private GoogleApiClient mGoogleApiClient = null;
     private LocationRequest mLocationRequestBalancedPowerAccuracy;
-    private boolean locationServicesRequestApproved = false;
+    private boolean mLocationServicesRequestApproved = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -201,8 +201,8 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
     }
 
     private void showPermissionRationaleFragment(int resId, int permissionType){
-        final PermissionRationaleFragment persmissionFrag = PermissionRationaleFragment.getInstance(resId, permissionType);
-        persmissionFrag.show(getSupportFragmentManager(), null);
+        final PermissionRationaleFragment persmissionFragment = PermissionRationaleFragment.getInstance(resId, permissionType);
+        persmissionFragment.show(getSupportFragmentManager(), null);
     }
 
     @Override
@@ -265,7 +265,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
         switch(item.getItemId()){
             case R.id.action_start_scan:
                 if (checkIfVersionIsMarshmallowOrAbove()) {
-                    if (locationServicesRequestApproved)
+                    if (mLocationServicesRequestApproved)
                         checkForLocationPermissionsAndScan();
                     else {
                         createLocationRequestForResult();
@@ -291,7 +291,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
             case R.id.action_settings:
                 if(mScanning)
                     stopLeScan();
-                final Intent settings = new Intent(this, SettingsActivity.class);
+                final Intent settings = new Intent(this, AboutActivity.class);
                 startActivity(settings);
                 return true;
             case android.R.id.home:
@@ -320,7 +320,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
                 break;
             case REQUEST_LOCATION_SERVICES:
                 if(resultCode == RESULT_OK){
-                    locationServicesRequestApproved = true;
+                    mLocationServicesRequestApproved = true;
                     checkForLocationPermissionsAndScan();
                 } else {
                     showPermissionRationaleFragment(R.string.rationale_location_message, REQUEST_LOCATION_SERVICES);
@@ -485,7 +485,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
                 final Status status = locationSettingsResult.getStatus();
                 switch(status.getStatusCode()){
                     case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
-                        locationServicesRequestApproved = false;
+                        mLocationServicesRequestApproved = false;
                         try {
                             status.startResolutionForResult(MainActivity.this, REQUEST_LOCATION_SERVICES);
                         } catch (IntentSender.SendIntentException e) {
@@ -493,7 +493,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
                         }
                         break;
                     case LocationSettingsStatusCodes.SUCCESS:
-                        locationServicesRequestApproved = true;
+                        mLocationServicesRequestApproved = true;
                         checkForLocationPermissionsAndScan();
                         break;
                     case LocationSettingsStatusCodes.SETTINGS_CHANGE_UNAVAILABLE:
@@ -605,14 +605,13 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
                         stopLeScan();
                     if (mDbHelper.getAllWifiNetworks().size() > 0) {
                         if (isBleEnabled()) {
-                            Log.v(TAG, "Click event");
                             final ExtendedBluetoothDevice device = getDevice(position);
                             if (device == null) return;
                             mDeviceName = device.getName();
                             mDeviceAddress = device.getAddress();
                             if (mDbHelper.getDefaultWifiNetwork() == null) {
                                 WifiFragmentDefault def = WifiFragmentDefault.newInstance();
-                                def.show(getSupportFragmentManager(), "");
+                                def.show(getSupportFragmentManager(), null);
                             } else {
                                 connectToBleDevice();
                             }
@@ -620,7 +619,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
                             Toast.makeText(context, context.getString(R.string.enable_bluetooth), Toast.LENGTH_SHORT).show();
                     } else {
                         WifiFragmentMessage wifiFragmentMessage = WifiFragmentMessage.newInstance();
-                        wifiFragmentMessage.show(getSupportFragmentManager(), "");
+                        wifiFragmentMessage.show(getSupportFragmentManager(), null);
                     }
                 }
             });
@@ -692,7 +691,7 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
                 mProgressDialog.dismiss();
                 mHandler.removeCallbacks(connectionTimeout);
                 mConfigureBleFragment = ConfigureBleFragment.newInstance(mDeviceName, mDeviceAddress);
-                mConfigureBleFragment.show(getSupportFragmentManager(), "");
+                mConfigureBleFragment.show(getSupportFragmentManager(), null);
             } else if (BLEService.ACTION_DATA_AVAILABLE.equals(action)) {
             } else if (BLEService.ACTION_CHARACTERISTIC_WRITE_COMPLETE.equals(action)){
 

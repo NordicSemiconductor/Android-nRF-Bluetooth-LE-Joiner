@@ -56,14 +56,13 @@ import java.util.List;
 
 import no.nordicsemi.android.nrfblejoiner.R;
 import no.nordicsemi.android.nrfblejoiner.database.DatabaseHelper;
-import no.nordicsemi.android.nrfblejoiner.settings.SettingsActivity;
+import no.nordicsemi.android.nrfblejoiner.settings.AboutActivity;
 import no.nordicsemi.android.nrfblejoiner.widgets.DividerItemDecoration;
 import no.nordicsemi.android.nrfblejoiner.widgets.ItemClickHelperAdapter;
 import no.nordicsemi.android.nrfblejoiner.widgets.SimpleItemTouchHelperCallBack;
 
 public class ConfigureWifiActivity extends AppCompatActivity implements WifiFragmentAddFromScan.OnFragmentInteractionListener,WifiFragmentEdit.onWifiEditListener, WifiFragmentSelect.returnAddWifiMethodChoice, WifiFragmentAddManually.WifiInformation {
 
-    private static final String SHOWCASE_ID = "WIFI";
     private WifiManager wifiManager;
     private ArrayList<String> wifis;
     private WifiScanReceiver wifiReciever;
@@ -103,7 +102,7 @@ public class ConfigureWifiActivity extends AppCompatActivity implements WifiFrag
             @Override
             public void onWifiItemClick(WifiNetwork wifiNetwork) {
                 WifiFragmentEdit wifiFragmentEdit = WifiFragmentEdit.newInstance(wifiNetwork.getId(), wifiNetwork.getSsid(), wifiNetwork.getPassword(), wifiNetwork.isDefaultRouter());
-                wifiFragmentEdit.show(getSupportFragmentManager(), "wifi_fragment_edit");
+                wifiFragmentEdit.show(getSupportFragmentManager(), null);
             }
 
             @Override
@@ -187,11 +186,11 @@ public class ConfigureWifiActivity extends AppCompatActivity implements WifiFrag
         switch (item.getItemId())
         {
             case R.id.action_configure_wifi:
-                final WifiFragmentSelect def = WifiFragmentSelect.newInstance();
-                def.show(getSupportFragmentManager(), null);
+                final WifiFragmentSelect wifiFragmentSelect = WifiFragmentSelect.newInstance();
+                wifiFragmentSelect.show(getSupportFragmentManager(), null);
                 break;
             case R.id.action_settings:
-                final Intent settings = new Intent(this, SettingsActivity.class);
+                final Intent settings = new Intent(this, AboutActivity.class);
                 startActivity(settings);
             case android.R.id.home:
                 onBackPressed();

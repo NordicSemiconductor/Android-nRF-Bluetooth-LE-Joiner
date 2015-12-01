@@ -39,18 +39,10 @@ import no.nordicsemi.android.nrfblejoiner.R;
 
 public class SettingsFragment extends PreferenceFragmentCompat implements SharedPreferences.OnSharedPreferenceChangeListener{
 
-    private static final String ARG_CATEGORY = "category";
-
-    public static SettingsFragment newInstance (final String category) {
+    public static SettingsFragment newInstance () {
         final SettingsFragment fragment = new SettingsFragment();
-
-        final Bundle args = new Bundle();
-        args.putString(ARG_CATEGORY, category);
-        fragment.setArguments(args);
-
         return fragment;
     }
-
     @Override
     public void onCreatePreferences(Bundle bundle, String s) {
     }
@@ -58,9 +50,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        final Bundle args = getArguments();
-        final String categoryName = args.getString(ARG_CATEGORY);
-        final int category = getPreferencesByCategory(categoryName);
+        final int category = getPreferencesByCategory();
         addPreferencesFromResource(category);
     }
 
@@ -109,7 +99,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements Shared
         }
     }
 
-    private int getPreferencesByCategory(final String category) {
+    private int getPreferencesByCategory() {
         return R.xml.about_preferences;
     }
 }

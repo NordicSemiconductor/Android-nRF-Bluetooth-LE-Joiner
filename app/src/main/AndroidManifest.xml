@@ -69,7 +69,7 @@
             android:screenOrientation="portrait" >
         </activity>
         <activity
-            android:name="no.nordicsemi.android.nrfblejoiner.settings.SettingsActivity"
+            android:name=".settings.AboutActivity"
             android:label="@string/title_activity_settings"
             android:screenOrientation="portrait" >
         </activity>

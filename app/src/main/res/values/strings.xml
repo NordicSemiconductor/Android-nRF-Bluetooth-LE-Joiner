@@ -39,7 +39,7 @@
     <string name="action_connect">Connect</string>
     <string name="action_disconnect">Disconnect</string>
     <string name="action_configure_wifi">Configure Wifi</string>
-
+    <string name="title_activity_settings">About</string>
     <string name="unknown_device">Unknown device</string>
     <string name="unknown_characteristic">Unknown characteristic</string>
     <string name="unknown_service">Unknown service</string>
@@ -172,4 +172,5 @@
     <string name="op_code_error">Please check if a Control Point Configuration or the Next Mode has been selected</string>
     <string name="backup_mode_error">Please check if the back up mode is selected!</string>
     <string name="identify">Identify</string>
+    <string name="action_about">About</string>
 </resources>

@@ -34,6 +34,6 @@
     tools:context="no.nordicsemi.android.no.iotcommissioning.wifi.ConfigureWifiActivity">
     <item android:id="@+id/action_configure_wifi" android:title="@string/add_wifi_network"
         android:orderInCategory="100" app:showAsAction="always" />
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
+    <item android:id="@+id/action_settings" android:title="@string/action_about"
         android:orderInCategory="101" app:showAsAction="never" />
 </menu>
