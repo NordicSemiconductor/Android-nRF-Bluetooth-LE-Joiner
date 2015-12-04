@@ -32,7 +32,7 @@
         android:title="@string/settings_about_github" >
        <intent
             android:action="android.intent.action.VIEW"
-            android:data="https://github.com/NordicSemiconductor/nRF-BLE-Joiner" />
+            android:data="https://github.com/NordicSemiconductor/Android-nRF-BLE-Joiner" />
     </Preference>
 
     <Preference
