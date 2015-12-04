@@ -70,7 +70,7 @@
     <string name="ble_configuration_mode">Configuration Mode</string>
     <string name="ble_identification_mode">Identification Mode</string>
     <string name="identity_mode_duration">Identity Mode Duration:</string>
-    <string name="identification_duration">Identification duration in seconds</string>
+    <string name="identification_duration">Mode duration in seconds</string>
     <string name="ble_frag_op_code_message">Select an action</string>
     <string name="action_delay">Action delay in seconds</string>
     <string name="connection_duration_default">20</string>
