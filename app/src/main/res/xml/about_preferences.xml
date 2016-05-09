@@ -24,7 +24,7 @@
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <no.nordicsemi.android.nrfblejoiner.settings.AboutPreference
-        android:icon="@drawable/ic_launcher_about"
+        android:icon="@drawable/ic_launcher"
         android:title="@string/settings_about_nrf_iot" />
 
     <Preference

@@ -42,6 +42,7 @@ import android.bluetooth.BluetoothProfile;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Binder;
+import android.os.Handler;
 import android.os.IBinder;
 import android.os.ParcelUuid;
 import android.util.Log;
@@ -86,6 +87,8 @@ public class BLEService extends Service {
             "no.nordicsemi.android.nrfblejoiner.ACTION_CHARACTERISTIC_WRITE_COMPLETE";
     public final static String ACTION_DISMISS_DIALOG =
             "no.nordicsemi.android.nrfblejoiner.ACTION_DISMISS_DIALOG";
+    public final static String ACTION_GATT_ERROR =
+            "no.nordicsemi.android.nrfblejoiner.ACTION_GATT_ERROR";
     private final static ParcelUuid NODE_CONFIGURATION_SERVICE = ParcelUuid.fromString("54207799-8F40-4FE5-BEBE-6BB7022D3E73");
     public final static UUID COMMISSIONNING_SSID_CHARACTERISTIC = UUID.fromString("542077A9-8F40-4FE5-BEBE-6BB7022D3E73");
     public final static UUID COMMISSIONNING_KEYS_STORE_CHARACTERISTIC = UUID.fromString("542077B9-8F40-4FE5-BEBE-6BB7022D3E73");
@@ -141,8 +144,8 @@ public class BLEService extends Service {
                 broadcastUpdate(intentAction);
                 Log.i(TAG, "Connected to GATT server.");
                 // Attempts to discover services after successful connection.
-                Log.i(TAG, "Attempting to start service discovery:" +
-                        mBluetoothGatt.discoverServices());
+                Log.i(TAG, "Attempting to start service discovery");
+                mBluetoothGatt.discoverServices();
 
             } else if (newState == BluetoothProfile.STATE_DISCONNECTED) {
                 intentAction = ACTION_GATT_DISCONNECTED;
@@ -164,7 +167,6 @@ public class BLEService extends Service {
                     mControlPointCharacteristic = service.getCharacteristic(COMMISSIONNING_CONTROL_POINT_CHARACTERISTIC);
                     broadcastUpdate(ACTION_GATT_SERVICES_DISCOVERED);
                 }
-
             } else {
                 Log.w(TAG, "onServicesDiscovered received: " + status);
             }
@@ -199,9 +201,17 @@ public class BLEService extends Service {
             } else if(mControlPoint && status == 0){
                 mControlPoint = false;
                 broadcastUpdate(ACTION_CHARACTERISTIC_WRITE_COMPLETE);
+            } else {
+                broadcastError(status);
             }
         }
     };
+
+    private void broadcastError(final int error) {
+        final Intent intent = new Intent(ACTION_GATT_ERROR);
+        intent.putExtra(EXTRA_DATA, error);
+        sendBroadcast(intent);
+    }
 
     private void broadcastUpdate(final String action) {
         final Intent intent = new Intent(action);

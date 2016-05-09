@@ -167,8 +167,8 @@ public class WifiFragmentEdit extends DialogFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.toString().length() > 16)
-                    tiSsid.setError(getString(R.string.ssid_too_long_error));
+                if (s.toString().length() > 16 || s.toString().length() < 6)
+                    tiSsid.setError(getString(R.string.ssid_length_error));
 
             }
         });
@@ -194,14 +194,16 @@ public class WifiFragmentEdit extends DialogFragment {
     }
 
     private boolean validateInput(){
-        if(etSsid.getText().toString().equalsIgnoreCase("")){
+        final String ssid = etSsid.getText().toString().trim();
+        final String password = etPassword.getText().toString().trim();
+        if(ssid.isEmpty()){
             tiSsid.setError(getActivity().getString(R.string.empty_ssid));
             return false;
-        } else if(etSsid.getText().toString().length() > 16){
-            showToast(tiSsid.getError().toString());
+        } else if(ssid.length() > 16 || ssid.length() < 6){
+            tiSsid.setError(getString(R.string.ssid_length_error));
             return false;
-        } else if (etPassword.getText().toString().length() > 16){
-            showToast(tiPassword.getError().toString());
+        } else if (password.length() > 16){
+            showToast(getString(R.string.password_too_long_error));
             return false;
         }
         return true;
@@ -215,10 +217,10 @@ public class WifiFragmentEdit extends DialogFragment {
         final WifiNetwork wifiNetwork = mDbHelper.getDefaultWifiNetwork();
 
         if(wifiNetwork != null && wifiNetwork.getId() == id){
-            mDbHelper.updateWifiNetwork(wifiNetwork.getId(), etSsid.getText().toString(), etPassword.getText().toString(), isDefaultRouter);
+            mDbHelper.updateWifiNetwork(wifiNetwork.getId(), etSsid.getText().toString(), etPassword.getText().toString().trim(), isDefaultRouter);
         } else {
             mDbHelper.changeDefaultWifiNetworkToOther();
-            mDbHelper.updateWifiNetwork(id, ssid, etPassword.getText().toString(), isDefaultRouter);
+            mDbHelper.updateWifiNetwork(id, etSsid.getText().toString().trim(), etPassword.getText().toString().trim(), isDefaultRouter);
         }
     }
 

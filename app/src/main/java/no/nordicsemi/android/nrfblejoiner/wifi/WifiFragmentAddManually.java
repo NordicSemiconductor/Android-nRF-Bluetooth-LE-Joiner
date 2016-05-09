@@ -150,8 +150,8 @@ public class WifiFragmentAddManually extends DialogFragment {
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (s.toString().length() > 16) {
-                    tiSsid.setError(getString(R.string.ssid_too_long_error));
+                if (s.toString().length() > 16 || s.toString().length() < 6){
+                    tiSsid.setError(getString(R.string.ssid_length_error));
                 }
             }
         });
@@ -178,13 +178,15 @@ public class WifiFragmentAddManually extends DialogFragment {
     }
 
     private boolean validateInput(){
-        if(etSsid.getText().toString().equalsIgnoreCase("")){
+        final String ssid = etSsid.getText().toString().trim();
+        final String password = etPassword.getText().toString().trim();
+        if(ssid.isEmpty()){
             tiSsid.setError(getString(R.string.empty_ssid));
             return false;
-        } else if(etSsid.getText().toString().length() > 16){
-            showToast(tiSsid.getError().toString());
+        } else if(ssid.length() > 16){
+            tiSsid.setError(getString(R.string.ssid_length_error));
             return false;
-        } else if (etPassword.getText().toString().length() > 16){
+        } else if (password.length() > 16){
             showToast(tiPassword.getError().toString());
             return false;
         }

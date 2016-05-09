@@ -182,6 +182,8 @@ public class WifiFragmentAddFromScan extends DialogFragment {
         if(spinner.getSelectedItem().toString().equalsIgnoreCase("Select")){
             showToast(getString(R.string.please_select_wifi));
             return false;
+        } else if(spinner.getSelectedItem().toString().length() < 6 || spinner.getSelectedItem().toString().length() > 16){
+            showToast(getString(R.string.error_selected_wifi));
         } else if (etWifiPassword.getText().length() > 16){
             tiPassword.setError(tiPassword.getError().toString());
             return false;

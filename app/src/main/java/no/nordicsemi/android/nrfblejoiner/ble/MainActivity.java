@@ -44,6 +44,7 @@ import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.location.LocationManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -711,6 +712,11 @@ public class MainActivity extends AppCompatActivity implements ConfigureBleFragm
             } else if (BLEService.ACTION_DISMISS_DIALOG.equals(action)) {
                 if(mProgressDialog.isShowing())
                     mProgressDialog.dismiss();
+            } else if (BLEService.ACTION_GATT_ERROR.equals(action)){
+                final Uri data = intent.getData();
+                if(data != null){
+                    Toast.makeText(MainActivity.this, "Gatt Error occurred: Error " + data.toString(), Toast.LENGTH_LONG).show();
+                }
             }
         }
     };
