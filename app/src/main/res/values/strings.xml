@@ -142,7 +142,7 @@
     <string name="rationale_location_message">From Android 6.0 Marshmallow onwards, the system requires access to device\'s location in order to scan for Bluetooth Smart devices.
       \n\nBluetooth beacons, like iBeacons or Eddystone beacons, may be used to determine the phone\'s and user\'s location, However <b>nRF BLE Joiner</b> will not be using device location information for any purpose.</string>
     <string name="cancel">Cancel</string>
-    <string name="ssid_too_long_error">SSID length cannot be greater than 16 characters!</string>
+    <string name="ssid_length_error">SSID length must be between 6 and 16 characters!</string>
     <string name="password_too_long_error">Password length cannot be greater than 16 characters</string>
     <string name="check_error_try_again">Please looking in to the errors and try again!</string>
     <string name="please_select_wifi">Please select a wifi network from the list!</string>
@@ -173,4 +173,5 @@
     <string name="backup_mode_error">Please check if the back up mode is selected!</string>
     <string name="identify">Identify</string>
     <string name="action_about">About</string>
+    <string name="error_selected_wifi">According to WPA requiremnets, selected wifi network length should be greater than 6 characters</string>
 </resources>
