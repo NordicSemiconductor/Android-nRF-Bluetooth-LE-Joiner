@@ -7,9 +7,9 @@ android {
     defaultConfig {
         applicationId "no.nordicsemi.android.nrfblejoiner"
         minSdkVersion 18
-        targetSdkVersion 26
-        versionCode 5
-        versionName "1.1"
+        targetSdkVersion 29
+        versionCode 6
+        versionName "1.2"
         vectorDrawables.useSupportLibrary = true
     }
     buildTypes {
