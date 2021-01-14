@@ -45,4 +45,9 @@
         <item name="android:textSize">30sp</item>
         <item name="android:paddingLeft">100dp</item>
     </style>
+    <style name="AppTheme.SplashScreen">
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:windowDrawsSystemBarBackgrounds">true</item>
+        <item name="android:statusBarColor">@color/colorNordicLogoTop</item>
+    </style>
 </resources>

@@ -1,11 +1,11 @@
-# nRF BLE Joiner
-nRF BLE Joiner is an application that lets you add new IoT nodes to a network based on Bluetooth Smart. The application will configure the IoT node to establish a connection to an IPv6 enabled router via Bluetooth Smart. 
+# nRF Bluetooth LE Joiner
+nRF Bluetooth LE Joiner is an application that lets you add new IoT nodes to a network based on Bluetooth Smart. The application will configure the IoT node to establish a connection to an IPv6 enabled router via Bluetooth Smart. 
 
-The application will initally scan for IoT nodes in range which contains the BLE Node Configuration Service. Once connected to a node the user is allowed to add these IoT nodes to the network based on Bluetooth Smart by pressing the configure button. The application also has to pre-configure the wifi networks within the app in order to add the IoT Nodes. This can be done via scanning for wifi networks in range or can be added manually by typing the SSID and Passphrase.
+The application will initally scan for IoT nodes in range which contains the Node Configuration Service. Once connected to a node the user is allowed to add these IoT nodes to the network based on Bluetooth Smart by pressing the configure button. The application also has to pre-configure the wifi networks within the app in order to add the IoT Nodes. This can be done via scanning for wifi networks in range or can be added manually by typing the SSID and Passphrase.
 
 Available on play store here https://play.google.com/store/apps/details?id=no.nordicsemi.android.nrfblejoiner
 
-## BLE Node Configuration Service
+## Node Configuration Service
 The Node Configuration Service exposes information necessary to configure the node so it can be added to the network. This service is not a service defined by the Bluetooth SIG, but a proprietary service defined by Nordic Semiconductor to demonstrate commissioning of a node.
 The Node Configuration GATT Service does not depend on any other services and can operate only on Bluetooth low energy as transport.
 This service contains three characteristics

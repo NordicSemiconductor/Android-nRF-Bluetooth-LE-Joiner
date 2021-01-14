@@ -29,12 +29,9 @@
   -->
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ble_rel"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="no.nordicsemi.android.no.iotcommissioning.ble.BleScannerActivity"
-    android:background="@drawable/background_image">
+    android:layout_height="match_parent">
 
     <include layout="@layout/toolbar"
     android:id="@+id/app_bar"/>
@@ -47,13 +44,4 @@
         android:paddingBottom="@dimen/activity_vertical_margin_bottom"
         android:clipToPadding="false"
         android:layout_below="@+id/app_bar"/>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/background_title"
-        android:scaleType="center"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"/>
 </RelativeLayout>

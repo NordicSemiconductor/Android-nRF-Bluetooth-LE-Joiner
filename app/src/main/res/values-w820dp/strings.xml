@@ -45,7 +45,7 @@
     <string name="unknown_service">Unknown service</string>
     <string name="no_data">No data</string>
     <string name="wifi_instructions">Please ensure that the android device is connected to the desired wifi network</string>
-    <string name="config_btn_text">Configure BLE Node</string>
+    <string name="config_btn_text">Configure Node</string>
     <string name="activity_settings_title">Settings</string>
     <string name="settings_wifi">Wifi Networks</string>
 
@@ -59,7 +59,6 @@
     </string-array>
     <string name="title_activity_configure_wifi">Configure Wifi</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="add_wifi_network">Add Wifi</string>
     <string name="view_password">View password</string>
 
