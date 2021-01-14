@@ -34,6 +34,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatDelegate;
 import android.view.animation.AlphaAnimation;
 import android.widget.RelativeLayout;
 
@@ -48,6 +49,7 @@ public class SplashScreenActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        AppCompatDelegate.setCompatVectorFromResourcesEnabled(true);
         setContentView(R.layout.activity_splash_screen);
 
         final DatabaseHelper dbHelper = new DatabaseHelper(this);
@@ -59,21 +61,13 @@ public class SplashScreenActivity extends Activity {
 
         final Handler handler = new Handler();
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                relativeLayout.setAnimation(alpha);
-            }
-        }, 700);
+        new Handler().postDelayed(() -> relativeLayout.setAnimation(alpha), 700);
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                final Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-                startActivity(intent);
-                finish();
-            }
+        handler.postDelayed(() -> {
+            final Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+            startActivity(intent);
+            finish();
         }, DURATION);
 
     }

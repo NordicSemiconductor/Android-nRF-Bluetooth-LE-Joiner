@@ -36,6 +36,7 @@
     </style>
 
     <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowBackground">@color/background</item>
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
@@ -134,5 +135,10 @@
     </style>
     <style name="HeaderShadow">
         <item name="android:foreground">@drawable/action_bar_shadow</item>
+    </style>
+
+    <style name="AppTheme.SplashScreen">
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
     </style>
 </resources>

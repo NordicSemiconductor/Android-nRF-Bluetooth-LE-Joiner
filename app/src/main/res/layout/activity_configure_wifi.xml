@@ -33,9 +33,8 @@
     android:id="@+id/layout_wifi_configure"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="no.nordicsemi.android.no.iotcommissioning.wifi.ConfigureWifiActivity"
-    android:orientation="vertical"
-    android:background="@drawable/background_image">
+    tools:context=".wifi.ConfigureWifiActivity"
+    android:orientation="vertical">
 
     <include layout="@layout/toolbar"
         android:id="@+id/app_bar"/>
@@ -90,7 +89,8 @@
             android:id="@+id/otherlist"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingStart="?android:attr/listPreferredItemPaddingStart">
+            android:paddingStart="?android:attr/listPreferredItemPaddingStart"
+            tools:ignore="RtlSymmetry">
         </android.support.v7.widget.RecyclerView>
     </LinearLayout>
 
@@ -111,14 +111,5 @@
             android:gravity="center"
             android:text="@string/no_wifi_configured"/>
     </RelativeLayout>
-
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@drawable/background_title"
-        android:scaleType="center"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"/>
 
 </RelativeLayout>
